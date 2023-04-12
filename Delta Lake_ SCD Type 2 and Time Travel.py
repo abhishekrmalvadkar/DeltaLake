@@ -115,4 +115,62 @@ targetTable.alias("target").merge(
 
 # COMMAND ----------
 
+# DBTITLE 1,Time Travel ( TT )
+# MAGIC %sql
+# MAGIC describe history scd2
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_PySpark method 1: Timestamp + table
+df_TT1 = spark.read.format("DELTA").option("timestampAsOf","2023-04-11T10:43:39.000+0000").table("scd2")
+display(df_TT1)
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_PySpark method 2: Timestamp + path
+df_TT2 = spark.read.format("DELTA").option("timestampAsOf","2023-04-11T10:43:39.000+0000").load("/FileStore/tables/SCDTYPE2")
+display(df_TT2)
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_PySpark method 3: Version + path
+df_TT3 = spark.read.format("DELTA").option("versionAsOf","11").load("/FileStore/tables/SCDTYPE2")
+display(df_TT3)
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_PySpark method 4: Version + table
+df_TT4 = spark.read.format("DELTA").option("versionAsOf","11").table("scd2")
+display(df_TT4)
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_SQL method 1: Version + table
+# MAGIC %sql
+# MAGIC 
+# MAGIC select * from scd2 VERSION AS OF 4
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_SQL method 2: Version + path
+# MAGIC %sql
+# MAGIC 
+# MAGIC select * from DELTA. `/FileStore/tables/SCDTYPE2` VERSION AS OF 3
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_SQL method 3: Timestamp + path
+# MAGIC %sql
+# MAGIC 
+# MAGIC select * from DELTA. `/FileStore/tables/SCDTYPE2` Timestamp AS OF "2023-04-11T10:43:39.000+0000"
+
+# COMMAND ----------
+
+# DBTITLE 1,TT_SQL method 4: Timestamp + table
+# MAGIC %sql
+# MAGIC 
+# MAGIC select * from scd2 Timestamp AS OF "2023-04-11T10:43:39.000+0000"
+
+# COMMAND ----------
+
 
