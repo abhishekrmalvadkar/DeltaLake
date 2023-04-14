@@ -84,3 +84,9 @@ Create two functions to encrypt and decrypt the data
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Delta Lake_ Internal architecture:
+
+Create a simple delta table and insert and delte some records to understand how the JSON transaction log file , CRC and parquet checkpoint file are created and what data they hold.
+Understanding what happens when we run a command for delta table, what are the json, crc and parquet files that are created.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
