@@ -70,5 +70,17 @@ This python file also has ZORDER BY command operation
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Delta Lake_ Column level encryption:
 
+Create a delta table and insert some records. 
+Enable cache and monitor the speed change when the query returns a value\
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Delta Lake_ Column level encryption:
+
+Create a delta table and insert some records with example of PII (Personal identifiable information) values, example: email, address, phone No , etc.
+Create two functions to encrypt and decrypt the data
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
